@@ -25,6 +25,7 @@ users: list[UserScheme] = []
 
 @app.get("/user", status_code=200)
 async def test_get() -> list[UserScheme]:
+    global users
     return users
 
 
