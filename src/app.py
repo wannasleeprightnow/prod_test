@@ -26,11 +26,12 @@ users: list[UserScheme] = []
 @app.get("/user", status_code=200)
 async def test_get() -> list[UserScheme]:
     global users
+    print(users)
     return users
 
 
 @app.post("/user", status_code=201)
 async def test_post(user: UserScheme = Body()) -> UserScheme:
     global users
-    users.append(user)
+    users += [user]
     return user
