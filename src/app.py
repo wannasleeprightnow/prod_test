@@ -14,12 +14,13 @@ class UserScheme(pydantic.BaseModel):
 users: list[UserScheme] = []
 
 
-@app.get("/users", status_code=200)
+@app.get("/user", status_code=200)
 async def test_get() -> list[UserScheme]:
     return users
 
 
-@app.post("/add_user", status_code=201)
-async def test_post(data: UserScheme = Body()):
+@app.post("/user", status_code=201)
+async def test_post(user: UserScheme = Body()) -> UserScheme:
     global users
-    users.append(data)
+    users.append(user)
+    return user
